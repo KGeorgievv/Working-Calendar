@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Работен календар</string>
+    <string name="action_settings">Настройки</string>
+    <string name="selected_day">%s %d %s, %d</string>
+    <string name="coma_separated">%s, %d</string>
+    <string name="month_days_info">Почивни дни %d, Работни дни %d</string>
+    <string name="leave">Отпуска</string>
+    <string name="sick_leave">Болнични</string>
+    <string name="overtime">Извънреден труд</string>
+    <string name="work_time">Работно време</string>
+</resources>

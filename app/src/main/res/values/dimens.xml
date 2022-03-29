@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="half_offset">8dp</dimen>
+    <dimen name="default_offset">16dp</dimen>
+    <dimen name="double_offset">32dp</dimen>
+</resources>

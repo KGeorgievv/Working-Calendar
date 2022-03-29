@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Working calendar</string>
+    <string name="action_settings">Settings</string>
+    <string name="selected_day">%s %d %s, %d</string>
+    <string name="coma_separated">%s, %d</string>
+    <string name="month_days_info">Days off %d, Working days %d</string>
+    <string name="leave">Time off</string>
+    <string name="sick_leave">Sick leave</string>
+    <string name="overtime">Overtime</string>
+    <string name="work_time">Working time</string>
+</resources>

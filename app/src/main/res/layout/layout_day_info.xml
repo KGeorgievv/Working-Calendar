@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/default_offset"
+    android:paddingEnd="@dimen/default_offset">
+
+    <TextView
+        android:id="@+id/text_holiday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/circle_event"
+        android:drawablePadding="@dimen/half_offset"
+        android:padding="@dimen/half_offset"
+        android:text="Почивен ден - 3ти Март, Освобожението на България" />
+
+    <TextView
+        android:id="@+id/text_working_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/circle_event"
+        android:drawablePadding="@dimen/half_offset"
+        android:drawableTint="@color/work"
+        android:padding="@dimen/half_offset"
+        android:text="Работни часове: 8" />
+
+    <TextView
+        android:id="@+id/text_overtime_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/circle_event"
+        android:drawablePadding="@dimen/half_offset"
+        android:drawableTint="@color/overtime"
+        android:padding="@dimen/half_offset"
+        android:text="Извънредни часове: 8" />
+
+    <TextView
+        android:id="@+id/text_sick_leave_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/circle_event"
+        android:drawablePadding="@dimen/half_offset"
+        android:drawableTint="@color/sick_leave"
+        android:padding="@dimen/half_offset"
+        android:text="Болнични: 8" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
