@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingStart="@dimen/default_offset"
-    android:paddingEnd="@dimen/default_offset">
+    android:paddingTop="@dimen/default_offset"
+    android:paddingEnd="@dimen/default_offset"
+    android:paddingBottom="@dimen/default_offset">
 
     <TextView
         android:id="@+id/text_holiday"
@@ -13,7 +17,9 @@
         android:drawableStart="@drawable/circle_event"
         android:drawablePadding="@dimen/half_offset"
         android:padding="@dimen/half_offset"
-        android:text="Почивен ден - 3ти Март, Освобожението на България" />
+        android:visibility="gone"
+        tools:text="@string/holiday"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_working_hours"
@@ -21,9 +27,11 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/circle_event"
         android:drawablePadding="@dimen/half_offset"
-        android:drawableTint="@color/work"
         android:padding="@dimen/half_offset"
-        android:text="Работни часове: 8" />
+        android:text="@string/work_hours"
+        android:visibility="gone"
+        app:drawableTint="@color/work"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_overtime_hours"
@@ -31,9 +39,11 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/circle_event"
         android:drawablePadding="@dimen/half_offset"
-        android:drawableTint="@color/overtime"
         android:padding="@dimen/half_offset"
-        android:text="Извънредни часове: 8" />
+        android:text="@string/overtime_hours"
+        android:visibility="gone"
+        app:drawableTint="@color/overtime"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/text_sick_leave_hours"
@@ -41,8 +51,58 @@
         android:layout_height="wrap_content"
         android:drawableStart="@drawable/circle_event"
         android:drawablePadding="@dimen/half_offset"
-        android:drawableTint="@color/sick_leave"
         android:padding="@dimen/half_offset"
-        android:text="Болнични: 8" />
+        android:text="@string/time_off_sick_hours"
+        android:visibility="gone"
+        app:drawableTint="@color/sick_leave"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_time_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/circle_event"
+        android:drawablePadding="@dimen/half_offset"
+        android:padding="@dimen/half_offset"
+        android:text="@string/time_off_hours"
+        android:visibility="gone"
+        app:drawableTint="@color/time_off"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/text_unpaid_time_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/circle_event"
+        android:drawablePadding="@dimen/half_offset"
+        android:padding="@dimen/half_offset"
+        android:text="@string/unpaid_time_off_hours"
+        android:visibility="gone"
+        app:drawableTint="@color/time_off_unpaid"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/view_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/default_offset"
+        android:paddingBottom="@dimen/default_offset"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:src="@drawable/ic_no_data"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_offset"
+            android:gravity="center"
+            android:text="@string/no_info" />
+
+    </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

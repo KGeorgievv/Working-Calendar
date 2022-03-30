@@ -4,8 +4,16 @@
     <string name="selected_day">%s %d %s, %d</string>
     <string name="coma_separated">%s, %d</string>
     <string name="month_days_info">Days off %d, Working days %d</string>
-    <string name="leave">Time off</string>
+    <string name="time_off">Time off</string>
+    <string name="time_off_unpaid">Unpaid time off</string>
     <string name="sick_leave">Sick leave</string>
     <string name="overtime">Overtime</string>
     <string name="work_time">Working time</string>
+    <string name="holiday">Holiday - %s</string>
+    <string name="no_info">No information</string>
+    <string name="unpaid_time_off_hours">Unpaid time off hours: %d</string>
+    <string name="time_off_hours">Time off hours: %d</string>
+    <string name="time_off_sick_hours">Sick leave hours: %d</string>
+    <string name="overtime_hours">Overtime hours: %d</string>
+    <string name="work_hours">Working time hours: %d</string>
 </resources>

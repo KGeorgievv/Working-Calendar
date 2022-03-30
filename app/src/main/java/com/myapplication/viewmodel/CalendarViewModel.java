@@ -8,6 +8,7 @@ import com.myapplication.config.Global;
 import com.myapplication.data.Calendar;
 import com.myapplication.data.Day;
 import com.myapplication.data.Month;
+import com.myapplication.database.LoggedTimeDao;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,25 +23,43 @@ import java.util.List;
 
 public class CalendarViewModel extends ViewModel {
 
+    private LoggedTimeDao loggedTimeDao;
+
+    public void setLoggedTimeDao(LoggedTimeDao loggedTimeDao) {
+        this.loggedTimeDao = loggedTimeDao;
+    }
+
+    /**
+     * Days
+     */
+    private final int nowDayIndex = LocalDate.now().getDayOfMonth() - 1;
+
+    private Day selectedDay;
+
+    public Day getCurrentDay() {
+        Day day = _month.getValue().getDay(this.nowDayIndex);
+        day.setIsSelected(true);
+        return day;
+    }
+
+    public Day getSelectedDay() {
+        return this.selectedDay;
+    }
+
+    public void setSelectedDay(Day day) {
+        this.selectedDay = day;
+    }
+
     /**
      * Month calendar
      */
     private final int nowMonthIndex = LocalDate.now().getMonthValue() - 1;
-    private final int nowDayIndex = LocalDate.now().getDayOfMonth() - 1;
-
-    private int currentDayIndex = nowDayIndex;
     private int currentMonthIndex = nowMonthIndex;
 
     private final MutableLiveData<Month> _month = new MutableLiveData<>();
 
     public LiveData<Month> getMonth() {
         return this._month;
-    }
-
-    public Day getCurrentDay() {
-        Day day = _month.getValue().getDay(this.currentDayIndex);
-        day.setIsSelected(true);
-        return day;
     }
 
     public void nextMonth() {
@@ -121,12 +140,15 @@ public class CalendarViewModel extends ViewModel {
                 if (rowElement.text().isEmpty()) continue;
 
                 String dayValue = rowElement.text();
-                boolean isHoliday = rowElement.className().contains("table-active");
+                boolean isNotWorkingDay = rowElement.className().contains("table-active");
+                String holidayTitle = rowElement.attributes().get("title");
 
                 java.time.Month month = java.time.Month.of(monthIndex);
                 LocalDate date = LocalDate.of(year, month, Integer.parseInt(dayValue));
 
-                days.add(new Day(date, isHoliday));
+                boolean hasRecord = loggedTimeDao.getLoggedTimeByDate(date) != null;
+                Day day = new Day(date, isNotWorkingDay, holidayTitle, hasRecord);
+                days.add(day);
             }
         }
 

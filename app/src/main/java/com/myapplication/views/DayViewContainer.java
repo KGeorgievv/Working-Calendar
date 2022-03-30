@@ -13,14 +13,14 @@ public class DayViewContainer extends ViewContainer {
 
     public View root;
     public TextView day;
-    public ImageView imageHoliday;
+    public ImageView imageDot;
 
     public DayViewContainer(@NonNull View view) {
         super(view);
 
         this.root = view.findViewById(R.id.root);
         this.day = view.findViewById(R.id.text_day);
-        this.imageHoliday = view.findViewById(R.id.image_holiday);
+        this.imageDot = view.findViewById(R.id.image_dot);
     }
 
 }

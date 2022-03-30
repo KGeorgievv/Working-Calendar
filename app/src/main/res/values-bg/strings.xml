@@ -4,8 +4,16 @@
     <string name="selected_day">%s %d %s, %d</string>
     <string name="coma_separated">%s, %d</string>
     <string name="month_days_info">Почивни дни %d, Работни дни %d</string>
-    <string name="leave">Отпуска</string>
+    <string name="time_off">Отпуск</string>
+    <string name="time_off_unpaid">Неплатен Отпуск</string>
     <string name="sick_leave">Болнични</string>
     <string name="overtime">Извънреден труд</string>
     <string name="work_time">Работно време</string>
+    <string name="holiday">Почивен ден - %s</string>
+    <string name="no_info">Няма информация</string>
+    <string name="unpaid_time_off_hours">Неплатен отпуск часове: %d</string>
+    <string name="time_off_hours">Отпуск часове: %d</string>
+    <string name="time_off_sick_hours">Болнични часове: %d</string>
+    <string name="overtime_hours">Извънредни часове: %d</string>
+    <string name="work_hours">Работни часове: %d</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.myapplication.views;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.View;
@@ -57,7 +58,7 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
 
         applyDynamicFont(container, day, isDayVisible);
         applyBackground(container, day, isDayVisible);
-        applyHolidayDot(container, day, isDayVisible);
+        applyDayDot(container, day, isDayVisible);
 
         container.day.setOnClickListener(view -> {
             if (!isDayVisible) return;
@@ -77,14 +78,15 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
 
         if (!isDayVisible) {
             color = ContextCompat.getColor(context, R.color.text_secondary);
-        } else if (day.isSelected() || day.isHoliday()) {
+        } else if (day.isSelected() || day.isHoliday() || day.isWeekend()) {
             color = ContextCompat.getColor(context, R.color.primary);
         } else {
             color = ContextCompat.getColor(context, R.color.text);
         }
         container.day.setTextColor(color);
 
-        if (day.isSelected() || day.isHoliday()) {
+        boolean isDayTextBold = day.isSelected() || day.isHoliday() || day.isWeekend();
+        if (isDayTextBold && isDayVisible) {
             container.day.setTypeface(null, Typeface.BOLD);
         } else {
             container.day.setTypeface(null, Typeface.NORMAL);
@@ -92,7 +94,7 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
     }
 
     private void applyBackground(DayViewContainer container, Day day, boolean isDayVisible) {
-        if (day.isSelected()) {
+        if (day.isSelected() && isDayVisible) {
             Drawable bg = ContextCompat.getDrawable(context, R.drawable.calendar_selected_day);
             container.day.setBackground(bg);
         } else {
@@ -100,11 +102,17 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
         }
     }
 
-    protected void applyHolidayDot(DayViewContainer container, Day day, boolean isDayVisible) {
+    protected void applyDayDot(DayViewContainer container, Day day, boolean isDayVisible) {
         if (day.isHoliday() && isDayVisible) {
-            container.imageHoliday.setVisibility(View.VISIBLE);
+            container.imageDot.setVisibility(View.VISIBLE);
+            int color = ContextCompat.getColor(context, R.color.holiday);
+            container.imageDot.setImageTintList(ColorStateList.valueOf(color));
+        } else if (day.hasRecord() && isDayVisible) {
+            container.imageDot.setVisibility(View.VISIBLE);
+            int color = ContextCompat.getColor(context, R.color.primary);
+            container.imageDot.setImageTintList(ColorStateList.valueOf(color));
         } else {
-            container.imageHoliday.setVisibility(View.GONE);
+            container.imageDot.setVisibility(View.GONE);
         }
     }
 

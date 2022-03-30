@@ -43,13 +43,22 @@
         tools:ignore="ContentDescription">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_leave"
+            android:id="@+id/menu_unpaid_time_off"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_alarm_off_24"
+            app:fab_colorNormal="@color/primary"
+            app:fab_colorPressed="@color/primary"
+            fab:fab_label="@string/time_off_unpaid" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/menu_time_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_self_improvement_24"
             app:fab_colorNormal="@color/primary"
             app:fab_colorPressed="@color/primary"
-            fab:fab_label="@string/leave" />
+            fab:fab_label="@string/time_off" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/menu_sick_leave"
@@ -87,6 +96,7 @@
         android:layout_marginTop="@dimen/half_offset"
         android:paddingStart="@dimen/double_offset"
         android:paddingTop="@dimen/double_offset"
+        android:paddingEnd="0dp"
         android:paddingBottom="@dimen/double_offset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,27 +5,48 @@ import java.time.LocalDate;
 public class Day {
 
     private final LocalDate day;
-    private final boolean isHoliday;
-    private boolean isSelected;
+    private final boolean isWeekend;
+    private final String holiday;
 
-    public Day(LocalDate day, boolean isHoliday) {
+    private boolean isSelected;
+    private boolean hasRecord;
+
+    public Day(LocalDate day, boolean isWeekend, String holiday, boolean hasRecord) {
         this.day = day;
-        this.isHoliday = isHoliday;
+        this.isWeekend = isWeekend;
+        this.holiday = holiday;
+        this.hasRecord = hasRecord;
     }
 
     public LocalDate getDay() {
-        return day;
+        return this.day;
+    }
+
+    public String getHoliday() {
+        return holiday;
     }
 
     public boolean isHoliday() {
-        return isHoliday;
+        return this.holiday != null && !this.holiday.isEmpty();
     }
 
-    public boolean isSelected(){
+    public boolean isWeekend() {
+        return this.isWeekend;
+    }
+
+    public boolean hasRecord() {
+        return hasRecord;
+    }
+
+    public void setHasRecord(boolean hasRecord) {
+        this.hasRecord = hasRecord;
+    }
+
+    public boolean isSelected() {
         return this.isSelected;
     }
 
-    public void setIsSelected(boolean isSelected){
+    public void setIsSelected(boolean isSelected) {
         this.isSelected = isSelected;
     }
 
