@@ -29,16 +29,16 @@ public class Month {
         return this.days.get(index);
     }
 
-    public Integer getYear() {
+    public int getYear() {
         return days.get(0).getDay().getYear();
     }
 
-    public Integer getWorkingDaysCount() {
-        return (int) days.stream().filter(day -> !day.isHoliday()).count();
+    public int getWorkingDaysCount() {
+        return (int) days.stream().filter(day -> !day.isHoliday() && !day.isWeekend()).count();
     }
 
-    public Integer getHolidayDaysCount() {
-        return (int) days.stream().filter(Day::isHoliday).count();
+    public int getHolidayDaysCount() {
+        return (int) days.stream().filter(day -> day.isHoliday() || day.isWeekend()).count();
     }
 
 }

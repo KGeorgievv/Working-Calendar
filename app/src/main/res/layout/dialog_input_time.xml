@@ -3,24 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="18dp">
+    android:background="@color/white"
+    android:paddingTop="@dimen/default_offset"
+    android:paddingBottom="@dimen/default_offset">
 
-    <View
-        android:id="@+id/header"
+    <TextView
+        android:id="@+id/hint"
         android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:background="@drawable/background_round_top"
-        android:backgroundTint="@color/sick_leave"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/default_offset"
+        android:paddingTop="@dimen/default_offset"
+        android:paddingEnd="@dimen/default_offset"
+        android:paddingBottom="@dimen/double_offset"
+        android:text="Моля въведете "
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        app:layout_constraintTop_toBottomOf="@id/hint">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input"

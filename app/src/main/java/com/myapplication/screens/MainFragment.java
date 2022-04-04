@@ -17,6 +17,7 @@ import com.myapplication.databinding.FragmentMainBinding;
 import com.myapplication.viewmodel.CalendarViewModel;
 import com.myapplication.views.CalendarDayBinder;
 import com.myapplication.views.CalendarListener;
+import com.myapplication.views.InputTimeDialog;
 import com.myapplication.views.MonthHeaderBinder;
 
 import org.apache.commons.lang3.StringUtils;
@@ -98,6 +99,9 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
 
         // todo: after input data update selected day
 //        updateSelectedDay(true);
+
+        InputTimeDialog dialog = new InputTimeDialog(getContext(), type);
+        dialog.show();
     }
 
     private void showLoggedTime(Day day, LoggedTime loggedTime) {
