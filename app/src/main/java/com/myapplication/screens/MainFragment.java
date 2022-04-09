@@ -23,6 +23,7 @@ import com.myapplication.views.MonthHeaderBinder;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
 import java.util.Locale;
@@ -100,7 +101,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
         // todo: after input data update selected day
 //        updateSelectedDay(true);
 
-        InputTimeDialog dialog = new InputTimeDialog(getContext(), type);
+        LocalDate date = viewModel.getCurrentDay().getDay();
+        InputTimeDialog dialog = new InputTimeDialog(getContext(), date, type, getLoggedTimeDao());
         dialog.show();
     }
 

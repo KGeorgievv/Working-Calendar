@@ -16,4 +16,12 @@
     <string name="time_off_sick_hours">Болнични часове: %d</string>
     <string name="overtime_hours">Извънредни часове: %d</string>
     <string name="work_hours">Работни часове: %d</string>
+    <string name="text_welcome">Добре дошли в Работен календар</string>
+    <string name="hint_salary">Въведете заплата</string>
+    <string name="hint_pto_days">Въведете почивни дни</string>
+    <string name="button_continue">Продължи</string>
+    <string name="error_input">Полето е задължително</string>
+    <string name="input_hours">Моля въведете %s</string>
+    <string name="hint_remaining_days">Оставащи дни %d от %d</string>
+    <string name="no_days_left">Няма оставащи дни</string>
 </resources>

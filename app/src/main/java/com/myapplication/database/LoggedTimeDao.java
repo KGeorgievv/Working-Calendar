@@ -18,6 +18,9 @@ public interface LoggedTimeDao {
     @Query("SELECT * FROM logged_time WHERE date == :date")
     LiveData<LoggedTime> getLoggedTimeByDateLiveData(LocalDate date);
 
+    @Query("SELECT SUM(time_off_hours) as total FROM logged_time")
+    int getLoggedTimeOffHours();
+
     @Insert
     void saveLoggedTime(LoggedTime loggedTime);
 

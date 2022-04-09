@@ -16,4 +16,12 @@
     <string name="time_off_sick_hours">Sick leave hours: %d</string>
     <string name="overtime_hours">Overtime hours: %d</string>
     <string name="work_hours">Working time hours: %d</string>
+    <string name="text_welcome">Welcome to Calendar app</string>
+    <string name="hint_salary">Enter Salary</string>
+    <string name="hint_pto_days">Enter paid time off days</string>
+    <string name="button_continue">Continue</string>
+    <string name="error_input">This field is mandatory</string>
+    <string name="input_hours">Please enter %s</string>
+    <string name="hint_remaining_days">Remaining days %d of %d</string>
+    <string name="no_days_left">No days left</string>
 </resources>

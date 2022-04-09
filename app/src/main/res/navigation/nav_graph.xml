@@ -3,7 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/action_main">
+    app:startDestination="@id/action_initialize">
+
+    <fragment
+        android:id="@+id/action_initialize"
+        android:name="com.myapplication.screens.InitializationFragment">
+        <action
+            android:id="@+id/action_empty_to_action_setup"
+            app:destination="@id/action_setup" />
+        <action
+            android:id="@+id/action_empty_to_action_main"
+            app:destination="@id/action_main" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/action_setup"
+        android:name="com.myapplication.screens.SetupFragment"
+        tools:layout="@layout/fragment_setup">
+        <action
+            android:id="@+id/action_setup_to_action_main"
+            app:destination="@id/action_main"
+            app:popUpTo="@id/action_setup"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/action_main"

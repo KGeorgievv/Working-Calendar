@@ -10,6 +10,13 @@ import java.time.LocalDate;
 @Entity(tableName = "logged_time")
 public class LoggedTime {
 
+    public LoggedTime() {
+    }
+
+    public LoggedTime(LocalDate date) {
+        this.date = date;
+    }
+
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "date")
@@ -77,4 +84,5 @@ public class LoggedTime {
     public void setOvertime(int overtime) {
         this.overtime = overtime;
     }
+
 }
