@@ -2,7 +2,9 @@ package com.myapplication.data;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.time.LocalDate;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +41,14 @@ public class Month {
 
     public int getHolidayDaysCount() {
         return (int) days.stream().filter(day -> day.isHoliday() || day.isWeekend()).count();
+    }
+
+    public List<LocalDate> getDays() {
+        ArrayList<LocalDate> dates = new ArrayList<>();
+        for (int i = 0; i < days.size(); i++) {
+            dates.add(days.get(i).getDay());
+        }
+        return dates;
     }
 
 }

@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
     <string name="selected_day">%s %d %s, %d</string>
     <string name="coma_separated">%s, %d</string>
-    <string name="month_days_info">Days off %d, Working days %d</string>
+    <string name="month_days_info">%d days off, %d working days</string>
     <string name="time_off">Time off</string>
     <string name="time_off_unpaid">Unpaid time off</string>
     <string name="sick_leave">Sick leave</string>
@@ -22,6 +22,7 @@
     <string name="button_continue">Continue</string>
     <string name="error_input">This field is mandatory</string>
     <string name="input_hours">Please enter %s</string>
-    <string name="hint_remaining_days">Remaining days %d of %d</string>
+    <string name="hint_remaining_days">Remaining hours %d of %d</string>
     <string name="no_days_left">No days left</string>
+    <string name="salary">Salary per hour %dлв\nSalary for month %dлв / %dлв</string>
 </resources>

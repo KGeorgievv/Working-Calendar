@@ -34,13 +34,6 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
         listener.onDayClicked(day);
     }
 
-    public void resetSelectedDay() {
-        if (this.mLastSelectedDay != null) {
-            this.mLastSelectedDay.setIsSelected(false);
-        }
-        this.mLastSelectedDay = null;
-    }
-
     @NonNull
     @Override
     public DayViewContainer create(@NonNull View view) {
@@ -64,7 +57,7 @@ public class CalendarDayBinder implements DayBinder<DayViewContainer> {
             if (!isDayVisible) return;
 
             if (mLastSelectedDay != null) {
-                mLastSelectedDay.setIsSelected(!mLastSelectedDay.isSelected());
+                mLastSelectedDay.setIsSelected(false);
             }
 
             day.setIsSelected(!day.isSelected());

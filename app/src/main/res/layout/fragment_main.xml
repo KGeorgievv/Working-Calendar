@@ -94,13 +94,25 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/half_offset"
-        android:paddingStart="@dimen/double_offset"
+        android:paddingStart="@dimen/default_offset"
         android:paddingTop="@dimen/double_offset"
         android:paddingEnd="0dp"
-        android:paddingBottom="@dimen/double_offset"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/text_salary_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Работни дни: 2, Почивни дни 28" />
+
+    <TextView
+        android:id="@+id/text_salary_info"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/default_offset"
+        android:paddingTop="@dimen/default_offset"
+        android:paddingEnd="0dp"
+        android:paddingBottom="@dimen/default_offset"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Заплата на час 6лв,\nЗаплата за месец 240лв / 1000лв" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

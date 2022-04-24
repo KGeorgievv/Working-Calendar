@@ -3,7 +3,7 @@
     <string name="action_settings">Настройки</string>
     <string name="selected_day">%s %d %s, %d</string>
     <string name="coma_separated">%s, %d</string>
-    <string name="month_days_info">Почивни дни %d, Работни дни %d</string>
+    <string name="month_days_info">%d почивни дни, %d работни дни</string>
     <string name="time_off">Отпуск</string>
     <string name="time_off_unpaid">Неплатен Отпуск</string>
     <string name="sick_leave">Болнични</string>
@@ -22,6 +22,7 @@
     <string name="button_continue">Продължи</string>
     <string name="error_input">Полето е задължително</string>
     <string name="input_hours">Моля въведете %s</string>
-    <string name="hint_remaining_days">Оставащи дни %d от %d</string>
+    <string name="hint_remaining_days">Оставащи часове %d от %d</string>
     <string name="no_days_left">Няма оставащи дни</string>
+    <string name="salary">Заплата на час %dлв\nЗаплата за месец %dлв / %dлв</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.room.Query;
 import com.myapplication.data.LoggedTime;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Dao
 public interface LoggedTimeDao {
@@ -17,6 +18,9 @@ public interface LoggedTimeDao {
 
     @Query("SELECT * FROM logged_time WHERE date == :date")
     LiveData<LoggedTime> getLoggedTimeByDateLiveData(LocalDate date);
+
+    @Query("SELECT * FROM logged_time WHERE date IN (:dates)")
+    LiveData<List<LoggedTime>> getLoggedTimeForDates(List<LocalDate> dates);
 
     @Query("SELECT SUM(time_off_hours) as total FROM logged_time")
     int getLoggedTimeOffHours();

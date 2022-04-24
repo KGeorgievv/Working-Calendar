@@ -9,10 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.myapplication.R;
+import com.myapplication.config.PreferenceManager;
 import com.myapplication.data.Day;
 import com.myapplication.data.LoggedTime;
 import com.myapplication.data.Month;
+import com.myapplication.data.MonthSalary;
 import com.myapplication.data.TimeType;
+import com.myapplication.data.User;
 import com.myapplication.databinding.FragmentMainBinding;
 import com.myapplication.viewmodel.CalendarViewModel;
 import com.myapplication.views.CalendarDayBinder;
@@ -26,9 +29,10 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.TextStyle;
+import java.util.List;
 import java.util.Locale;
 
-public class MainFragment extends BaseFragment implements View.OnClickListener, CalendarListener {
+public class MainFragment extends BaseFragment implements View.OnClickListener, CalendarListener, InputTimeDialog.Listener {
 
     private FragmentMainBinding binding;
     private CalendarViewModel viewModel;
@@ -63,14 +67,8 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.button_left) {
-            viewModel.prevMonth();
-            resetSelectedDay();
-        }
-        if (view.getId() == R.id.button_right) {
-            viewModel.nextMonth();
-            resetSelectedDay();
-        }
+        if (view.getId() == R.id.button_left) viewModel.prevMonth();
+        if (view.getId() == R.id.button_right) viewModel.nextMonth();
     }
 
     @Override
@@ -85,6 +83,11 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     @Override
+    public void onLoggedTime(TimeType type) {
+        updateSelectedDay(true);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
@@ -96,13 +99,10 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
 
     private void enterLoggedTime(TimeType type) {
         binding.fab.toggle(true);
-        // todo show input dialog
 
-        // todo: after input data update selected day
-//        updateSelectedDay(true);
-
-        LocalDate date = viewModel.getCurrentDay().getDay();
+        LocalDate date = viewModel.getSelectedDay().getDay();
         InputTimeDialog dialog = new InputTimeDialog(getContext(), date, type, getLoggedTimeDao());
+        dialog.setListener(this);
         dialog.show();
     }
 
@@ -226,6 +226,10 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
                     YearMonth.of(YearMonth.now().getYear(), month.getIndex())
             );
         }
+
+        // salary info
+        List<LocalDate> dates = month.getDays();
+        getLoggedTimeDao().getLoggedTimeForDates(dates).observe(this, this::displaySalaryData);
     }
 
     /**
@@ -250,9 +254,23 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
         setTitle(textDay);
     }
 
-    private void resetSelectedDay() {
-        dayBinder.resetSelectedDay();
-        super.setTitle(getString(R.string.app_name));
+    /**
+     * Month salary
+     */
+
+    private void displaySalaryData(List<LoggedTime> loggedTimes) {
+        PreferenceManager preferenceManager = new PreferenceManager(getContext());
+        User user = preferenceManager.getUser();
+
+        MonthSalary salary = new MonthSalary(user, viewModel.getMonth().getValue(), loggedTimes);
+        binding.textSalaryInfo.setText(
+                String.format(
+                        getString(R.string.salary),
+                        salary.getSalaryPerHour(),
+                        salary.calculateSalary(),
+                        salary.getMonthSalary()
+                )
+        );
     }
 
 }

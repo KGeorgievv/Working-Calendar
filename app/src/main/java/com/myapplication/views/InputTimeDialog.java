@@ -28,6 +28,7 @@ public class InputTimeDialog {
     private final View content;
     private final LocalDate date;
     private final TextInputEditText viewInput;
+    private Listener mListener;
 
     public InputTimeDialog(
             Context context,
@@ -57,6 +58,10 @@ public class InputTimeDialog {
         setupHintText(type, user, loggedTimeDao);
 
         Utils.showKeyBoard(viewInput);
+    }
+
+    public void setListener(Listener mListener) {
+        this.mListener = mListener;
     }
 
     public void show() {
@@ -113,13 +118,13 @@ public class InputTimeDialog {
 
         if (type == TimeType.TimeOff) {
             viewHint.setVisibility(View.VISIBLE);
-            int daysLeft = user.getPtoDays() - dao.getLoggedTimeOffHours();
+            int hoursLeft = user.getPtoDays() * 8 - dao.getLoggedTimeOffHours();
 
-            if (daysLeft > 0) {
+            if (hoursLeft > 0) {
                 String text = context.getString(
                         R.string.hint_remaining_days,
-                        daysLeft,
-                        user.getPtoDays()
+                        hoursLeft,
+                        user.getPtoDays() * 8
                 );
                 viewHint.setText(text);
             } else {
@@ -171,20 +176,35 @@ public class InputTimeDialog {
         switch (type) {
             case Work:
                 dao.updateWorkTime(date, hours);
+                notifyListener(type);
                 break;
             case TimeOff:
                 dao.updateTimeOffHours(date, hours);
+                notifyListener(type);
                 break;
             case UnpaidTimeOff:
                 dao.updateUnpaidTimeOffHours(date, hours);
+                notifyListener(type);
                 break;
             case SickTimeOff:
                 dao.updateSickTimeOffHours(date, hours);
+                notifyListener(type);
                 break;
             case Overtime:
                 dao.updateOvertimeHours(date, hours);
+                notifyListener(type);
                 break;
         }
+    }
+
+    private void notifyListener(TimeType type) {
+        if (mListener != null) mListener.onLoggedTime(type);
+    }
+
+    public interface Listener {
+
+        void onLoggedTime(TimeType type);
+
     }
 
 }
