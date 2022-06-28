@@ -15,7 +15,7 @@ public class PreferenceManager {
 
     public void saveUser(User user) {
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putInt(Global.PREF_SALARY, user.getSalary());
+        editor.putFloat(Global.PREF_SALARY, user.getSalary());
         editor.putInt(Global.PREF_PTO_DAYS, user.getPtoDays());
         editor.apply();
     }
@@ -28,9 +28,16 @@ public class PreferenceManager {
 
     public User getUser() {
         if (!hasUser()) throw new IllegalStateException("No user found!");
-        int salary = sharedPref.getInt(Global.PREF_SALARY, 0);
+        float salary = sharedPref.getFloat(Global.PREF_SALARY, 0);
         int ptoDays = sharedPref.getInt(Global.PREF_PTO_DAYS, 0);
         return new User(salary, ptoDays);
+    }
+
+    public void clear() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.remove(Global.PREF_SALARY);
+        editor.remove(Global.PREF_PTO_DAYS);
+        editor.apply();
     }
 
 }

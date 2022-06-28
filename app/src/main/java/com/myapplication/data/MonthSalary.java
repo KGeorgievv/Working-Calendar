@@ -27,7 +27,7 @@ public class MonthSalary {
             timeOffHours += loggedTime.getTimeOff();
         }
 
-        int hourSalary = user.getSalaryPerHour();
+        float hourSalary = user.getSalaryPerHour();
         double salary = workHours * hourSalary +
                 overtimeHours * hourSalary * 1.5 +
                 sickLeaveHours * hourSalary * 0.8 +
@@ -36,14 +36,14 @@ public class MonthSalary {
         return Math.round(salary);
     }
 
-    public int getSalaryPerHour() {
+    public float getSalaryPerHour() {
         return user.getSalaryPerHour();
     }
 
     public int getMonthSalary() {
-        int hourSalary = user.getSalaryPerHour();
+        float hourSalary = user.getSalaryPerHour();
         int workDays = user.getWorkingDays();
-        return workDays * hourSalary * 8;
+        return (int) (workDays * hourSalary * 8);
     }
 
 }

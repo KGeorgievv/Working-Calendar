@@ -43,7 +43,26 @@ public interface LoggedTimeDao {
     @Query("UPDATE logged_time SET time_off_unpaid_hours = :time WHERE date = :date")
     void updateUnpaidTimeOffHours(LocalDate date, int time);
 
+
+
     @Query("DELETE FROM logged_time")
-    void deleteAll();
+    void clear();
+
+
+
+    @Query("UPDATE logged_time SET work_hours = 0 WHERE date = :date")
+    void clearWorkTime(LocalDate date);
+
+    @Query("UPDATE logged_time SET overtime_hours = 0 WHERE date = :date")
+    void clearOvertimeHours(LocalDate date);
+
+    @Query("UPDATE logged_time SET sick_time_off_hours = 0 WHERE date = :date")
+    void clearSickTimeOffHours(LocalDate date);
+
+    @Query("UPDATE logged_time SET time_off_hours = 0 WHERE date = :date")
+    void clearTimeOffHours(LocalDate date);
+
+    @Query("UPDATE logged_time SET time_off_unpaid_hours = 0 WHERE date = :date")
+    void clearUnpaidTimeOffHours(LocalDate date);
 
 }

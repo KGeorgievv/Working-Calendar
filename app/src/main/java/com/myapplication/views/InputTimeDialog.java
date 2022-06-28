@@ -47,10 +47,8 @@ public class InputTimeDialog {
         builder = new AlertDialog.Builder(context);
         builder.setCustomTitle(generateTitle(type));
         builder.setView(content);
-        builder.setPositiveButton("Add", (dialogInterface, i) -> {
-            logHours(type, loggedTimeDao);
-        });
-        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+        builder.setPositiveButton(context.getString(R.string.add), (dialogInterface, i) -> logHours(type, loggedTimeDao));
+        builder.setNegativeButton(context.getString(R.string.cancel), (dialogInterface, i) -> {
         });
 
         prefillHours(type, loggedTimeDao);
@@ -160,9 +158,15 @@ public class InputTimeDialog {
         }
 
         if (hours != 0) {
+            addClearButton(type, dao);
             viewInput.setText(String.valueOf(hours));
             viewInput.setSelection(viewInput.length());
         }
+    }
+
+    private void addClearButton(TimeType type, LoggedTimeDao dao) {
+        builder.setNeutralButton(context.getString(R.string.clear_hours),
+                (dialogInterface, i) -> clearHours(type, dao));
     }
 
     private void logHours(TimeType type, LoggedTimeDao dao) {
@@ -176,34 +180,59 @@ public class InputTimeDialog {
         switch (type) {
             case Work:
                 dao.updateWorkTime(date, hours);
-                notifyListener(type);
+                notifyListener();
                 break;
             case TimeOff:
                 dao.updateTimeOffHours(date, hours);
-                notifyListener(type);
+                notifyListener();
                 break;
             case UnpaidTimeOff:
                 dao.updateUnpaidTimeOffHours(date, hours);
-                notifyListener(type);
+                notifyListener();
                 break;
             case SickTimeOff:
                 dao.updateSickTimeOffHours(date, hours);
-                notifyListener(type);
+                notifyListener();
                 break;
             case Overtime:
                 dao.updateOvertimeHours(date, hours);
-                notifyListener(type);
+                notifyListener();
                 break;
         }
     }
 
-    private void notifyListener(TimeType type) {
-        if (mListener != null) mListener.onLoggedTime(type);
+    private void clearHours(TimeType type, LoggedTimeDao dao) {
+        switch (type) {
+            case Work:
+                dao.clearWorkTime(date);
+                notifyListener();
+                break;
+            case TimeOff:
+                dao.clearTimeOffHours(date);
+                notifyListener();
+                break;
+            case UnpaidTimeOff:
+                dao.clearUnpaidTimeOffHours(date);
+                notifyListener();
+                break;
+            case SickTimeOff:
+                dao.clearSickTimeOffHours(date);
+                notifyListener();
+                break;
+            case Overtime:
+                dao.clearOvertimeHours(date);
+                notifyListener();
+                break;
+        }
+    }
+
+    private void notifyListener() {
+        if (mListener != null) mListener.onLoggedTime(date);
     }
 
     public interface Listener {
 
-        void onLoggedTime(TimeType type);
+        void onLoggedTime(LocalDate date);
 
     }
 

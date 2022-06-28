@@ -24,5 +24,11 @@
     <string name="input_hours">Моля въведете %s</string>
     <string name="hint_remaining_days">Оставащи часове %d от %d</string>
     <string name="no_days_left">Няма оставащи дни</string>
-    <string name="salary">Заплата на час %dлв\nЗаплата за месец %dлв / %dлв</string>
+    <string name="salary">Заплата на час %.2fлв\nЗаплата за месец %dлв / %dлв</string>
+    <string name="exit">Изход</string>
+    <string name="exit_dialog_title">Сигурни ли сте, че искате да илзезнете от приложението?</string>
+    <string name="exit_dialog_message">Всички ваши данни, които сте въвели ще бъдат изтрити за постоянно</string>
+    <string name="cancel">Отказ</string>
+    <string name="add">Добави</string>
+    <string name="clear_hours">Премахни</string>
 </resources>

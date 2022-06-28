@@ -29,6 +29,8 @@ public class InitializationFragment extends BaseFragment {
 
     @Override
     void initFragment() {
+        setTitle(getString(R.string.app_name));
+
         PreferenceManager preferenceManager = new PreferenceManager(getContext());
         boolean hasUser = preferenceManager.hasUser();
 

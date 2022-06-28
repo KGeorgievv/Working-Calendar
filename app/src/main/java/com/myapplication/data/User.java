@@ -2,17 +2,17 @@ package com.myapplication.data;
 
 public class User {
 
-    private final int salary;
+    private final float salary;
     private final int ptoDays;
-    private int salaryPerHour;
+    private float salaryPerHour;
     private int workingDays;
 
-    public User(int salary, int ptoDays) {
+    public User(float salary, int ptoDays) {
         this.salary = salary;
         this.ptoDays = ptoDays;
     }
 
-    public int getSalary() {
+    public float getSalary() {
         return salary;
     }
 
@@ -20,13 +20,13 @@ public class User {
         return ptoDays;
     }
 
-    public int getSalaryPerHour() {
+    public float getSalaryPerHour() {
         return salaryPerHour;
     }
 
     public void setWorkingDays(int workingDays) {
         this.workingDays = workingDays;
-        this.salaryPerHour = salary / this.workingDays / 8;
+        this.salaryPerHour = salary / this.workingDays / 8F;
     }
 
     public int getWorkingDays() {

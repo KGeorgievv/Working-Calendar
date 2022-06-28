@@ -2,11 +2,16 @@ package com.myapplication.screens;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavOptions;
+import androidx.navigation.Navigation;
 
 import com.myapplication.R;
 import com.myapplication.config.PreferenceManager;
@@ -20,6 +25,7 @@ import com.myapplication.databinding.FragmentMainBinding;
 import com.myapplication.viewmodel.CalendarViewModel;
 import com.myapplication.views.CalendarDayBinder;
 import com.myapplication.views.CalendarListener;
+import com.myapplication.views.ExitAppDialog;
 import com.myapplication.views.InputTimeDialog;
 import com.myapplication.views.MonthHeaderBinder;
 
@@ -32,12 +38,14 @@ import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
-public class MainFragment extends BaseFragment implements View.OnClickListener, CalendarListener, InputTimeDialog.Listener {
+public class MainFragment extends BaseFragment implements View.OnClickListener, CalendarListener,
+        InputTimeDialog.Listener, ExitAppDialog.Listener {
 
     private FragmentMainBinding binding;
     private CalendarViewModel viewModel;
     private CalendarDayBinder dayBinder;
     private boolean isCalendarInitialized;
+    private PreferenceManager preferenceManager;
 
     @Override
     public View onCreateView(
@@ -50,6 +58,10 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     void initFragment() {
+        setHasOptionsMenu(true);
+
+        preferenceManager = new PreferenceManager(getContext());
+
         viewModel = new ViewModelProvider(this).get(CalendarViewModel.class);
         viewModel.getMonth().observe(this, this::displayCurrentMonth);
         viewModel.setLoggedTimeDao(getLoggedTimeDao());
@@ -83,8 +95,37 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     @Override
-    public void onLoggedTime(TimeType type) {
-        updateSelectedDay(true);
+    public void onLoggedTime(LocalDate date) {
+        LoggedTime loggedTime = getLoggedTimeDao().getLoggedTimeByDate(date);
+        boolean hasRecord = loggedTime != null && loggedTime.hasData();
+        updateSelectedDay(hasRecord);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_exit) {
+            ExitAppDialog dialog = new ExitAppDialog(getContext());
+            dialog.setListener(this);
+            dialog.show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onExit() {
+        getLoggedTimeDao().clear();
+        preferenceManager.clear();
+
+        NavOptions.Builder navOptions = new NavOptions.Builder();
+        navOptions.setPopUpTo(R.id.action_main, true);
+        Navigation.findNavController(binding.getRoot()).navigate(R.id.action_initialize, null, navOptions.build());
     }
 
     @Override
@@ -107,7 +148,7 @@ public class MainFragment extends BaseFragment implements View.OnClickListener, 
     }
 
     private void showLoggedTime(Day day, LoggedTime loggedTime) {
-        if (loggedTime == null && !day.isHoliday()) {
+        if (loggedTime == null || !loggedTime.hasData()) {
             binding.viewInfo.viewNoData.setVisibility(View.VISIBLE);
         } else {
             binding.viewInfo.viewNoData.setVisibility(View.GONE);

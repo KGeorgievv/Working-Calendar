@@ -10,10 +10,7 @@ import java.time.LocalDate;
 @Entity(tableName = "logged_time")
 public class LoggedTime {
 
-    public LoggedTime() {
-    }
-
-    public LoggedTime(LocalDate date) {
+    public LoggedTime(@NonNull LocalDate date) {
         this.date = date;
     }
 
@@ -37,11 +34,12 @@ public class LoggedTime {
     @ColumnInfo(name = "overtime_hours")
     private int overtime;
 
+    @NonNull
     public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(@NonNull LocalDate date) {
         this.date = date;
     }
 
@@ -83,6 +81,14 @@ public class LoggedTime {
 
     public void setOvertime(int overtime) {
         this.overtime = overtime;
+    }
+
+    public boolean hasData() {
+        return this.work != 0 ||
+                this.timeOff != 0 ||
+                this.unpaidTimeOff != 0 ||
+                this.overtime != 0 ||
+                this.sickLeave != 0;
     }
 
 }

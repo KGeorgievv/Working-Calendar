@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.myapplication.config.Global;
 import com.myapplication.data.Calendar;
 import com.myapplication.data.Day;
+import com.myapplication.data.LoggedTime;
 import com.myapplication.data.Month;
 import com.myapplication.database.LoggedTimeDao;
 
@@ -146,7 +147,8 @@ public class CalendarViewModel extends ViewModel {
                 java.time.Month month = java.time.Month.of(monthIndex);
                 LocalDate date = LocalDate.of(year, month, Integer.parseInt(dayValue));
 
-                boolean hasRecord = loggedTimeDao.getLoggedTimeByDate(date) != null;
+                LoggedTime loggedTime = loggedTimeDao.getLoggedTimeByDate(date);
+                boolean hasRecord = loggedTime != null && loggedTime.hasData();
                 Day day = new Day(date, isNotWorkingDay, holidayTitle, hasRecord);
                 days.add(day);
             }

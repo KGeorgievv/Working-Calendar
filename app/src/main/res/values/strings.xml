@@ -24,5 +24,11 @@
     <string name="input_hours">Please enter %s</string>
     <string name="hint_remaining_days">Remaining hours %d of %d</string>
     <string name="no_days_left">No days left</string>
-    <string name="salary">Salary per hour %dлв\nSalary for month %dлв / %dлв</string>
+    <string name="salary">Salary per hour %.2fлв\nSalary for month %dлв / %dлв</string>
+    <string name="exit">Exit</string>
+    <string name="exit_dialog_title">Exit from app?</string>
+    <string name="exit_dialog_message">All of your data that you are logged will be deleted permanently</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="clear_hours">Remove</string>
 </resources>
