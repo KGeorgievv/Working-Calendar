@@ -22,11 +22,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initDatabase();
 
+        // създаване на изгледа на екрана който ще съдържа подекраните на приложението
         ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // добавяне на toolbar-а (лентата горе на приложението)
         setSupportActionBar(binding.toolbar);
 
+        // създаване на обект който ще се грижи за сменянето на екраните в приложението
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.action_initialize, R.id.action_setup, R.id.action_main
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
     }
 
+    // фунцкия която
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(
@@ -43,10 +47,12 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    // връща локалната база
     public AppDatabase getDatabase() {
         return this.database;
     }
 
+    // създаване на локаната база
     private void initDatabase() {
         this.database = Room.databaseBuilder(
                 getApplicationContext(), AppDatabase.class, "database"

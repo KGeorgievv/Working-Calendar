@@ -19,3 +19,5 @@
 
     <style name="Theme.MyApplication.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
+
+    <!--файл в който се описват различните стилове които се използват в приложението-->

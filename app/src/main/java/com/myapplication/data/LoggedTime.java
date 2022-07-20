@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
 
+/**
+ * Обект който съдържа данни с записаните часове
+ */
 @Entity(tableName = "logged_time")
 public class LoggedTime {
 
@@ -17,22 +20,22 @@ public class LoggedTime {
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "date")
-    private LocalDate date;
+    private LocalDate date; // дата
 
     @ColumnInfo(name = "work_hours")
-    private int work;
+    private int work; // работни часове
 
     @ColumnInfo(name = "time_off_hours")
-    private int timeOff;
+    private int timeOff; // почивни часове
 
     @ColumnInfo(name = "time_off_unpaid_hours")
-    private int unpaidTimeOff;
+    private int unpaidTimeOff; // часове за неплатен отпуск
 
     @ColumnInfo(name = "sick_time_off_hours")
-    private int sickLeave;
+    private int sickLeave; // часове за болнични
 
     @ColumnInfo(name = "overtime_hours")
-    private int overtime;
+    private int overtime; // часове за извънреден труд
 
     @NonNull
     public LocalDate getDate() {
@@ -83,6 +86,7 @@ public class LoggedTime {
         this.overtime = overtime;
     }
 
+    // връща дали записани данни или не
     public boolean hasData() {
         return this.work != 0 ||
                 this.timeOff != 0 ||

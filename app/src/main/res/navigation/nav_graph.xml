@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/action_initialize">
 
+    <!--    празен екран който служи само за навигация-->
     <fragment
         android:id="@+id/action_initialize"
         android:name="com.myapplication.screens.InitializationFragment">
@@ -16,6 +17,7 @@
             app:destination="@id/action_main" />
     </fragment>
 
+    <!--    екранът когато няма потребител-->
     <fragment
         android:id="@+id/action_setup"
         android:name="com.myapplication.screens.SetupFragment"
@@ -27,9 +29,12 @@
             app:popUpToInclusive="true" />
     </fragment>
 
+    <!--    основният екран в приложението-->
     <fragment
         android:id="@+id/action_main"
         android:name="com.myapplication.screens.MainFragment"
         tools:layout="@layout/fragment_main" />
 
 </navigation>
+
+    <!--файл в който се описват различните екрани в приложението-->

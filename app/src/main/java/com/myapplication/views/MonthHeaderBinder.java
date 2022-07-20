@@ -13,6 +13,7 @@ public class MonthHeaderBinder implements MonthHeaderFooterBinder<MonthViewConta
     public void bind(@NonNull MonthViewContainer viewContainer, @NonNull CalendarMonth calendarMonth) {
     }
 
+    // фунцкия която се извиква когато се създава header-а на календара
     @NonNull
     @Override
     public MonthViewContainer create(@NonNull View view) {

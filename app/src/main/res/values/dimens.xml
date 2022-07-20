@@ -3,3 +3,5 @@
     <dimen name="default_offset">16dp</dimen>
     <dimen name="double_offset">32dp</dimen>
 </resources>
+
+    <!--Файл в който се описват отстоянията които се използват в приложението-->

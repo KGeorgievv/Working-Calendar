@@ -6,6 +6,7 @@ import android.view.inputmethod.InputMethodManager;
 
 public class Utils {
 
+    // фунцкия която показва клавиатурата на телефона
     public static void showKeyBoard(View view) {
         view.post(() -> {
             if (view.requestFocus()) {
@@ -15,6 +16,7 @@ public class Utils {
         });
     }
 
+    // фунцкия която скрива клавиатурата на телефона
     public static void hideKeyboard(View view) {
         view.post(() -> {
             Context context = view.getContext();

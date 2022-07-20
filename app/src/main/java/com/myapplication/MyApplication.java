@@ -10,7 +10,7 @@ public class MyApplication extends Application {
         super.onCreate();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy); // todo: remove!!!
+        StrictMode.setThreadPolicy(policy);
     }
 
 }

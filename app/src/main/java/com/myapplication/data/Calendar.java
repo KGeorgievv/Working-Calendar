@@ -1,11 +1,15 @@
 package com.myapplication.data;
 
-import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Обект който съдържа текущата година и месеците в нея
+ */
 public class Calendar {
 
+    // годината
     private final Integer year;
+    // лист от месеците
     private final List<Month> months;
 
     public Calendar(Integer year, List<Month> months) {
@@ -13,21 +17,14 @@ public class Calendar {
         this.months = months;
     }
 
-    public Integer getYear() {
-        return this.year;
-    }
-
+    // връща лист с месеците
     public List<Month> getMonths() {
         return this.months;
     }
 
+    // връща даден месец по индекс
     public Month getMonth(int index) {
         return this.months.get(index);
-    }
-
-    public Month getCurrentMonth() {
-        LocalDate now = LocalDate.now();
-        return this.months.get(now.getMonthValue() - 1);
     }
 
 }

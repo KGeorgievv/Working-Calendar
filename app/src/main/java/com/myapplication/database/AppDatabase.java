@@ -6,6 +6,9 @@ import androidx.room.TypeConverters;
 
 import com.myapplication.data.LoggedTime;
 
+/**
+ * Локална база данни
+ */
 @Database(entities = {LoggedTime.class}, version = 1)
 @TypeConverters({LocalDateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {

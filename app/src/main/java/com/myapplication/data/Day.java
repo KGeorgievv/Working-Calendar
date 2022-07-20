@@ -2,13 +2,21 @@ package com.myapplication.data;
 
 import java.time.LocalDate;
 
+/**
+ * Обект който съдържа информацията за даден ден
+ */
 public class Day {
 
+    // дата
     private final LocalDate day;
+    // дали е уикенд (true/false)
     private final boolean isWeekend;
+    // дали е национален празник
     private final String holiday;
 
+    // дали е избран от потребителя (true/false)
     private boolean isSelected;
+    // дали има запис за часове (true/false)
     private boolean hasRecord;
 
     public Day(LocalDate day, boolean isWeekend, String holiday, boolean hasRecord) {

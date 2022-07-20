@@ -9,10 +9,16 @@ import androidx.annotation.NonNull;
 import com.kizitonwose.calendarview.ui.ViewContainer;
 import com.myapplication.R;
 
+/**
+ * Обект който съдържа изглед на деня който се показва в календара
+ */
 public class DayViewContainer extends ViewContainer {
 
+    // целият изглед
     public View root;
+    // текст на деня
     public TextView day;
+    // цветна точка
     public ImageView imageDot;
 
     public DayViewContainer(@NonNull View view) {
